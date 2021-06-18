@@ -1,0 +1,154 @@
+{% extends 'sidebar.html' %} {% block content %}
+
+<title>할일친구 체크메이트</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='dash.css') }}" />
+<script>
+  setTitle();
+  function setTitle(){document.title="Checkmate | Dashbaord";}
+</script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<body class=body>
+  <!-- 랜덤메세지 -->
+  <div class="dash_container">
+     <div class="today"></div>
+  <h1 style="margin-left: 5%;">Dash Board</h1>
+</br>
+
+  <!-- 이미지슬라이드 -->
+  <div class="slideshow-container">
+
+    <!-- Full-width images with number and caption text -->
+    <div class="mySlides fade">
+      <div class="numbertext">1 / 2</div>
+      <a href="https://www.notion.so/Checkmate-6a72263d5de7411ea170b490aa89fbc6" target="_blank"><img src="{{ url_for('static', filename='/img/Hello.png') }}" style="width:100%"></a>
+    </div>
+
+    <div class="mySlides fade">
+      <div class="numbertext">2 / 2</div>
+      <img src="{{ url_for('static', filename='/img/update.png') }}" style="width:100%">
+    </div>
+
+    <!-- <div class="mySlides fade">
+      <div class="numbertext">3 / 4</div>
+      <img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/cqxjhpdmepxto0nudsok/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
+      <div class="text">ACNE STUDIO</div>
+    </div> -->
+
+    <!-- <div class="mySlides fade">
+      <div class="numbertext">4 / 4</div>
+      <img src="https://divisare-res.cloudinary.com/images/f_auto,q_auto,w_800/v1491425434/coct9kmra7uhmeu4cxto/acne-studios-acne-studio-potsdamer-strasse.jpg" style="width:100%">
+      <div class="text">ACNE STUDIO</div>
+    </div> -->
+
+
+    <!-- Next and previous buttons -->
+    <a class="prev" onclick="moveSlides(-1)">&#10094;</a>
+    <a class="next" onclick="moveSlides(1)">&#10095;</a>
+  </div>
+  <br/>
+
+  <!-- The dots/circles -->
+  <div style="text-align:center">
+    <span class="dot" onclick="currentSlide(0)"></span>
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <!-- <span class="dot" onclick="currentSlide(2)"></span> -->
+    <!-- <span class="dot" onclick="currentSlide(3)"></span> -->
+
+  </div>
+    <!-- 오늘일정 & 진행롤 -->
+    <div class="row">
+    {% for progress in progress %}
+    <div class="col">
+      <h3 id="col-text" style="text-align:center"; >📅 오늘의 일정</h3>
+      <div style="display:flex; flex-direction:row;"> 
+        <div class="progress" id="col-text">
+          <!-- <div class="progress-done" data-done="{{progress['progress']}}">{{progress['progress']}}%</div> -->
+          <div class="progress-done" data-done="{{progress['progress']}}"></div>
+        </div>
+        <div style= "margin: 15px 15px;">{{progress['progress']}}%</div>
+    </div>
+      {% for im in today_list %}
+      <li id="col-text">{{im['title']}}</li>
+      {% endfor %}
+    </div>
+  <br />
+  {% endfor %}
+
+  <!-- 중요일정 --> 
+  <table
+    colspan="3"
+    class="customTable"
+    style="float: left; padding: 4px; margin: 2%;"
+  >
+    <thead>
+      <tr>
+        <th colspan="3">
+          <h3 id="table-text" style="text-align:center"; >⭐ 중요 일정</h3>
+          </th>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>일정</strong></td>
+        <td colspan="2"><strong>기간</strong></td>
+      </tr>
+      {% for im in important_list %}
+      <tr>
+        <td>{{im['title']}}</td>
+        <td>{{im['start']}} ~ {{im['end']}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+  <!-- upcoming todo -->
+  <table class="UpTable">
+    <thead>
+      <tr>
+        <th colspan="3"><h3 id="table-text-up" style="text-align:center"; >🚨 다가오는 일정 </h3></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>일정</strong></td>
+        <td colspan="2"><strong>기간</strong></td>
+      </tr>
+      {% for im in upcoming_list %}
+      <tr>
+        <td>{{im['title']}}</td>
+        <td>{{im['start']}} ~ {{im['end']}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+  <div class="modal" style="display:none;">
+    <div class="modal_content">
+        <i type="button" id="tutor_close_btn" class="fas fa-times-circle" style="user-select: auto;"></i></button>
+        <h2 style="padding-top: 40px; color:white;">Tutorial</h2>
+        
+        <div class="tutor_slides fade">
+          <div class="numbertext">1 / 2</div>
+          <a class="prev" onclick="tutor_moveSlides(-1)" style="position: relative;">&#10094;</a>
+          <img src="{{ url_for('static', filename='/tutorial_images/tutorial_sidebar.png') }}" style="width: 550px; vertical-align: middle; padding-top: 30px;">
+          <a class="next" onclick="tutor_moveSlides(1)" style="position: relative;">&#10095;</a>
+        </div>
+    
+        <div class="tutor_slides fade">
+          <div class="numbertext">2 / 2</div>
+          <a class="prev" onclick="tutor_moveSlides(-1)" style="position: relative;">&#10094;</a>
+          <img src="{{ url_for('static', filename='/tutorial_images/tutorial_dashboard.png') }}" style="width: 1000px; vertical-align: middle; padding-top: 40px;">
+          <a class="next" onclick="tutor_moveSlides(1)" style="position: relative;">&#10095;</a>
+        </div>
+    </div>
+  </div>
+</div>
+ 
+</body>
+<script src="{{ url_for('static', filename='dash.js') }}"></script>
+<!-- <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+{% endblock %}

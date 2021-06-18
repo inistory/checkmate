@@ -1,0 +1,74 @@
+{% extends 'sidebar.html' %}
+
+{% block content %}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" type="text/css" href="../static/profile.css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap" rel="stylesheet">
+<script>
+    setTitle();
+    function setTitle(){document.title="Checkmate | Profile";}
+</script>
+
+<div class="form">
+    <h2 class= "profile_title">My profile</h2>
+    <form>
+        <div>
+            <div class="label" id="label_username">
+                <span>username</span>
+                <div class="profile_data" id="div_username"></div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 50px;">
+            <div class="label" id="label_email">
+                <div class="div_email">
+                    <span>EMAIL</span>
+                    <div class="profile_data" id="original_email"></div>
+                    <input type="button" class="button" id="edit_email_btn" value="EMAIL 변경" style="width: 260px; cursor : pointer;">
+                </div>
+                <div class="div_new_email">
+                    <span id="new_email">새로운 EMAIL</span>
+                    <div class="profile_data" id="new_email">
+                        <input type="text" class="inputbox" id="input_new_email">
+                    </div>
+                    <input
+                        type="button"  class="button" id="save_email_btn" value="저장"
+                        style="width: 100px; background: #f1c40f; color: #371F54; cursor: pointer;"
+                        onclick="edit_email()">
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-bottom: 50px;">
+            <div class="label" id="label_password">
+                <input type="button"  class="button" id="change_password_btn" value="비밀번호 변경" style="width:260px; cursor: pointer;">
+                    <div class="div_change_password">
+                        
+                        <span>현재 비밀번호</span>
+                        <div class="profile_data">
+                            <input type="password" class="inputbox" id="input_cur_password">
+                        </div>
+
+                        <span>새로운 비밀번호</span>
+                        <div class="profile_data"><input type="password" class="inputbox" id="input_new_password"></div>
+                        <input
+                            type="button" class="button" id="save_password_btn" value="저장"
+                            style="width: 100px; background: #f1c40f; color: #371F54; cursor: pointer;"
+                            onclick="change_password()">
+                    </div>
+            </div>
+        </div>
+
+        <div>
+            <div class="label" id="label_withdrawal">
+                <input type="button"  class="button" id="withdrawal_btn" value="회원 탈퇴" style="width:260px; cursor: pointer;">
+            </div>
+        </div>
+    </form>
+
+</div>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="{{ url_for('static', filename='profile.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "bootstrap/base.html" %} {% import "bootstrap/wtf.html" as wtf %} {%
+block head %} {{ super() }}
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script
+  async
+  src="https://www.googletagmanager.com/gtag/js?id=G-GFHR05JEN4"
+></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", "G-GFHR05JEN4");
+</script>
+<meta charset="UTF-8" />
+<meta property="og:title" content="Checkmate" />
+<meta property="og:description" content="나만의 할 일 친구 체크메이트" />
+<meta
+  property="og:image"
+  content="{{ url_for('static', filename='/img/open_graph.png') }}"
+/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" type="text/css" href="../static/login.css" />
+<link
+  href="https://fonts.googleapis.com/css?family=Nunito:400,600,700,800&display=swap"
+  rel="stylesheet"
+/>
+<link rel="shortcut icon" href={{url_for('static', filename='img/favicon.ico')}}
+type="image/x-icon"> <link rel="icon" href={{url_for('static',
+filename='img/favicon.ico')}} type="image/x-icon">
+<script>
+  setTitle();
+  function setTitle() {
+    document.title = "Checkmate | Login";
+  }
+</script>
+  {% endblock %} {% block content %}
+<div class="cont">
+  <div class="form sign-in" style="padding-top: 50px" ;>
+    <form action="/auth/login" method="POST">
+      <h2>Sign In</h2>
+      {{ form.hidden_tag() }}
+      <label>
+        <span>{{ wtf.form_field(form.username) }}</span>
+      </label>
+      <label>
+        <span>{{ wtf.form_field(form.password) }}</span>
+      </label>
+      <button class="submit">Sign In</button>
+    </form>
+
+    {% with errors = get_flashed_messages(category_filter=["auth_error"]) %} {%
+    if errors %} {% for msg in errors%}
+    <div
+      class="alert alert-danger alert-dismissible show"
+      role="alert"
+      style="text-align: center"
+    >
+      <span>{{ msg }}</span>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+        style="width: 50px; padding-bottom: 15px"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %} {% endif %} {% endwith %}
+
+    <div class="social-media" style="margin-top: 0">
+      <a href="{{ url_for('auth.google_login') }}">
+        <img
+          src="../static/login_images/googlelogin.png"
+          alt="google_login"
+          style="width: 50%; height: 50%"
+        />
+      </a>
+    </div>
+  </div>
+
+  <div class="sub-cont">
+    <div class="img" x>
+      <!-- <style>
+                .img {
+                    background-image: url( "../static/login_images/bg.jpg" );
+                }
+            </style> -->
+      <div class="img-text m-up">
+        <!-- <p>Sign up and discover ssgreat amount of new opportunities!</p> -->
+      </div>
+      <div
+        class="img-btn"
+        id="to_signup_btn"
+        onclick="location.href='/auth/signup'"
+      >
+        <span class="m-up">Sign Up</span>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

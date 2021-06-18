@@ -1,0 +1,69 @@
+.form {
+  padding-top: 80px;
+}
+
+form{
+  padding: 30px;
+}
+
+.profile_title{
+  width: 100%;
+  font-size: 30px;
+  text-align: center;
+}
+
+.profile_data {
+  display: block;
+  width: 260px;
+  margin: 1px auto 15px;
+  padding-bottom: 5px;
+  border-bottom: 2.5px solid darkgrey;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Nunito', sans-serif; 
+}
+
+.label span{
+  font-size: 20px;
+  font-weight: 600;
+  color: #505f75;
+  text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.button{
+    /* margin-top: 40px;
+    margin-bottom: 30px;
+    cursor: pointer; */
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Nunito', sans-serif;
+    background: #371F54;
+    /* background: -webkit-linear-gradient(left, #7579ff, #b224ef); */
+    display: block;
+    margin: 0 auto;
+    height: 36px;
+    border-radius: 30px;
+    color: white;
+    font-size: 15px;
+    border: none;
+}
+
+.div_new_email{
+    display:none;
+}
+
+.div_change_password{
+    display:none;
+}
+
+.inputbox {
+    border: none;
+    text-align: center;
+}
+
+.order-1 { order: 1; }
+.order-2 { order: 2; }

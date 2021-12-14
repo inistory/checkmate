@@ -1,7 +1,7 @@
 # checkmate
 [checkmate] todolist 웹서비스
 
-[checkmate 바로가기](https://checkmate-todo.herokuapp.com/)
+[checkmate 바로가기(준비 중)](https://checkmate-todo.herokuapp.com/)
  
 ### 개발 환경
 1. 우선 mysql 설치가 필요합니다.  
